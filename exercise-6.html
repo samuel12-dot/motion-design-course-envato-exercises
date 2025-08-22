@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,8 @@
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap"
+		rel="stylesheet">
 
 	<style>
 		/* This design is inspired by Zed Dash's project */
@@ -246,8 +248,66 @@
 			opacity: 0;
 		}
 
+		.accordion--item {
+			transition-property: flex-basis, background-size, padding;
+		}
+
+		.accordion--item:hover:not(.opened) {
+			background-size: 32rem;
+			padding-block: 3rem;
+		}
+
+		.accordion--item:hover:not(.opened) .bottom-temp {
+			transform: translate3d(0, -1rem, 0);
+		}
+
+		.bottom-temp {
+			transition-property: transform, opacity;
+		}
+
+		.opened .bottom-temp {
+			transform: translate3d(0, 2rem, 0);
+		}
+
+		.temp,
+		.readings {
+			transition-property: opacity, transform;
+			/* transition-delay: var(--def-transition-duration); */
+		}
+
+		.temp {
+			transform: translate3d(0, -4rem, 0);
+		}
+
+		.readings {
+			transform: translate3d(0, 4rem, 0);
+		}
+
+		.opened .temp,
+		.opened .readings {
+			transform: translate3d(0, 0, 0);
+		}
+
+		.date li:nth-child(2) {
+			transition-property: color;
+		}
+
+
+
+
+
+
+		.accordion--item,
+		.bottom-temp,
+		.temp,
+		.readings,
+		.date li:nth-child(2) {
+			transition-duration: var(--def-transition-duration);
+			transition-timing-function: ease-in-out;
+		}
 	</style>
 </head>
+
 <body>
 	<div id="hero">
 		<header id="main-header">
@@ -457,4 +517,5 @@
 		})
 	</script>
 </body>
+
 </html>
