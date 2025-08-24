@@ -168,9 +168,60 @@
 		.captain {
 			width: 50%;
 			margin: auto;
-		}
+		} 
 
 		/* Air */
+
+		.button--loader {
+			display: flex;
+			gap: .25rem;
+		}
+
+		.button--loader > div{
+			width: .8rem;
+			height: .8rem;
+			background: white;
+			border-radius: 50%;
+			animation: 1.2s infinite ease-in-out scaleUp;
+		}
+		.button--loader div:nth-child(1) {
+			animation-delay: -0.32s;
+		}
+		.button--loader div:nth-child(2) {
+			animation-delay: -0.16s;
+		}
+
+		@keyframes scaleUp {
+			0%,80%,100% {
+				transform: scale(0);
+			}
+			40% {
+				transform: scale(1);
+			}
+		}
+		.button {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: .50rem;
+			height: 3.5rem;
+		}
+
+		.button--loader {
+			display: none;
+		}
+		.button.loading .button--text {
+			display: none;
+		}
+		.button.loading .button--loader {
+			display: flex;
+		}
+		.button.success {
+			background-color: var(--contextual-success-base);
+		}
+		.button.loading {
+			cursor: wait;
+		}
 	</style>
 </head>
 <body>
@@ -221,6 +272,19 @@
 
 		submitButton.addEventListener('click', (e) => {
 			// Air
+			e.preventDefault()
+
+			//Add the loading class
+			submitButton.classList.add('loading')
+
+			setTimeout(() => {
+				//Remove the loading class
+				submitButton.classList.remove('loading')
+				submitButton.classList.add('success')
+
+				//Change the button text
+				submitButtonText.innerHTML = 'Login successful'
+			}, 4000)
 		})
 	</script>
 </body>
